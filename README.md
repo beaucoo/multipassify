@@ -24,6 +24,14 @@ Multipass is constructed with two arguments: an API key and a site key.  These k
   // Construct the Multipassify encoder
   var multipassify = new Multipassify("SHOPIFY MULTIPASS SECRET");
 
+  // Create your customer data hash
+  var customerData = { email: 'test@example.com', remote_ip:'USERS IP ADDRESS', return_to:"http://some.url"};
+
   // Encode a Multipass token
-  var token = multipassify.encode({ email: 'test@example.com', remote_ip:'USERS IP ADDRESS', return_to:"http://some.url"});
+  var token = multipassify.encode(customerData);
+
+  // Generate a Shopify multipass URL to your shop
+  var url = multipassify.generateUrl(customerData, "yourstorename.myshopify.com");
+
+  // Generates a URL like:  https://yourstorename.myshopify.com/account/login/multipass/<MULTIPASS-TOKEN>
 ```

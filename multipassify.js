@@ -33,6 +33,11 @@ multipassify.prototype.encode = function(obj) {
     return token;
 };
 
+multipassify.prototype.generateUrl = function(obj, domain) {
+    if(!domain) return;
+    return "https://" + domain + "/account/login/multipass/" + this.encode(obj);
+};
+
 multipassify.prototype.sign = function (data) {
     var signed = crypto.createHmac("SHA256", this._signingKey).update(data).digest('binary');
     return signed;
