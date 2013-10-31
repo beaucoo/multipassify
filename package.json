@@ -2,13 +2,17 @@
     "name": "multipassify",
     "version": "1.0.0",
     "description": "Shopify Multipass module for Node.js",
-    "main": "./multipassify",
+    "homepage": "https://github.com/beaucoo/multipassify",
+    "main": "./multipassify.js",
     "keywords": [
         "shopify",
         "multipass"
     ],
     "engines": [
         "node"
+    ],
+    "authors": [
+        "Cory Smith, @Smixx"
     ],
     "contributors": [
         {
@@ -31,6 +35,7 @@
     "dependencies": {
         "crypto": "0.0.3"
     },
+    "readme": "",
     "readmeFilename": "README.md",
     "_id": "multipassify@1.0.0",
     "_from": "multipassify@1.0.0"
