@@ -1,0 +1,37 @@
+{
+    "name": "multipassify",
+    "version": "1.0.0",
+    "description": "Shopify Multipass module for Node.js",
+    "main": "./multipassify",
+    "keywords": [
+        "shopify",
+        "multipass"
+    ],
+    "engines": [
+        "node"
+    ],
+    "contributors": [
+        {
+            "name": "BeauCoo",
+            "email": "info@beaucoo.com",
+            "url": "http://beaucoo.com/"
+        },
+        {
+            "name": "Cory Smith",
+            "email": "cory@beaucoo.com"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/beaucoo/multipassify/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/beaucoo/multipassify.git"
+    },
+    "dependencies": {
+        "crypto": "0.0.3"
+    },
+    "readmeFilename": "README.md",
+    "_id": "multipassify@1.0.0",
+    "_from": "multipassify@1.0.0"
+}
