@@ -1,6 +1,6 @@
 {
     "name": "multipassify",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Shopify Multipass module for Node.js",
     "homepage": "https://github.com/beaucoo/multipassify",
     "main": "./multipassify.js",
