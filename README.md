@@ -22,11 +22,8 @@ Multipass is constructed with two arguments: an API key and a site key.  These k
   var Multipassify = require('multipassify');
 
   // Construct the Multipassify encoder
-  var multipassify = new Multipassify(config.shopifyMultipassSecret);
+  var multipassify = new Multipassify("SHOPIFY MULTIPASS SECRET");
 
   // Encode a Multipass token
-  var token = multipassify.encode({ email: 'test@example.com', remote_ip:'some ip address', return_to:"http://some.url"});
-
-  // Decode a Multipass token
-  var obj = multipass.decode(token);
+  var token = multipassify.encode({ email: 'test@example.com', remote_ip:'USERS IP ADDRESS', return_to:"http://some.url"});
 ```
