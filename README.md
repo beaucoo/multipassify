@@ -16,7 +16,8 @@ More details on Multipass with Shopify can be found [here](http://docs.shopify.c
 
 ## Usage
 
-Multipass is constructed with two arguments: an API key and a site key.  These keys can be found within the Tender admin (Accounts & Settings > Extras > Single Sign-On).
+To use Multipass an Enterprise / Plus plan is required. The Multipass secret can be found in your shop Admin (Settings > Checkout > Customer Accounts).
+Make sure "Accounts are required" or "Accounts are optional" is selected and Multipass is enabled.
 
 ``` js
   var Multipassify = require('multipassify');
