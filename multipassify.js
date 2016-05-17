@@ -8,9 +8,9 @@ var multipassify = module.exports = function(secret) {
 
     // Use the Multipass secret to derive two cryptographic keys,
     // one for encryption, one for signing
-    var hash = crypto.createHash("sha256").update(secret).digest('binary');
-    this._encryptionKey = hash.substring(0, BLOCK_SIZE);
-    this._signingKey = hash.substring(BLOCK_SIZE, 32);
+    var hash = crypto.createHash("sha256").update(secret).digest();
+    this._encryptionKey = hash.slice(0, BLOCK_SIZE);
+    this._signingKey = hash.slice(BLOCK_SIZE, 32);
     return this;
 };
 
@@ -26,7 +26,7 @@ multipassify.prototype.encode = function(obj) {
 
     // Create a signature (message authentication code) of the ciphertext
     // and encode everything using URL-safe Base64 (RFC 4648)
-    var token = new Buffer(cipherText + this.sign(cipherText),'binary').toString('base64');
+    var token = Buffer.concat([cipherText, this.sign(cipherText)]).toString('base64');
     token = token.replace(/\+/g, '-') // Replace + with -
         .replace(/\//g, '_'); // Replace / with _
 
@@ -39,7 +39,7 @@ multipassify.prototype.generateUrl = function(obj, domain) {
 };
 
 multipassify.prototype.sign = function (data) {
-    var signed = crypto.createHmac("SHA256", this._signingKey).update(data).digest('binary');
+    var signed = crypto.createHmac("SHA256", this._signingKey).update(data).digest();
     return signed;
 }
 
@@ -49,6 +49,6 @@ multipassify.prototype.encrypt = function(plaintext) {
     var cipher = crypto.createCipheriv('aes-128-cbc', this._encryptionKey,iv);
 
     // Use IV as first block of ciphertext
-    var encrypted = iv.toString('binary') + cipher.update(plaintext, 'utf8', 'binary') + cipher.final('binary');
+    var encrypted = Buffer.concat([iv, cipher.update(plaintext, 'utf8'), cipher.final()]);
     return encrypted;
 }
