@@ -32,9 +32,6 @@
         "type": "git",
         "url": "https://github.com/beaucoo/multipassify.git"
     },
-    "dependencies": {
-        "crypto": "0.0.3"
-    },
     "readme": "",
     "readmeFilename": "README.md",
     "_id": "multipassify@1.0.0",
