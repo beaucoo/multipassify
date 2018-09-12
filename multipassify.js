@@ -19,7 +19,9 @@ multipassify.prototype.encode = function(obj) {
 
     // Store the current time in ISO8601 format.
     // The token will only be valid for a small timeframe around this timestamp.
-    obj["created_at"] = new Date().toISOString();
+    if (!obj["created_at"]) {
+      obj["created_at"] = new Date().toISOString();
+    }
 
     // Serialize the customer data to JSON and encrypt it
     var cipherText = this.encrypt(JSON.stringify(obj));
