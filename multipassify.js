@@ -14,15 +14,17 @@ var multipassify = module.exports = function(secret) {
     return this;
 };
 
-multipassify.prototype.encode = function(obj) {
+multipassify.prototype.encode = function(obj, iv) {
     if (!obj) return;
 
     // Store the current time in ISO8601 format.
     // The token will only be valid for a small timeframe around this timestamp.
-    obj["created_at"] = new Date().toISOString();
+    if (!obj["created_at"]) {
+      obj["created_at"] = new Date().toISOString();
+    }
 
     // Serialize the customer data to JSON and encrypt it
-    var cipherText = this.encrypt(JSON.stringify(obj));
+    var cipherText = this.encrypt(JSON.stringify(obj), iv);
 
     // Create a signature (message authentication code) of the ciphertext
     // and encode everything using URL-safe Base64 (RFC 4648)
@@ -33,9 +35,9 @@ multipassify.prototype.encode = function(obj) {
     return token;
 };
 
-multipassify.prototype.generateUrl = function(obj, domain) {
+multipassify.prototype.generateUrl = function(obj, domain, iv) {
     if(!domain) return;
-    return "https://" + domain + "/account/login/multipass/" + this.encode(obj);
+    return "https://" + domain + "/account/login/multipass/" + this.encode(obj, iv);
 };
 
 multipassify.prototype.sign = function (data) {
@@ -43,9 +45,11 @@ multipassify.prototype.sign = function (data) {
     return signed;
 }
 
-multipassify.prototype.encrypt = function(plaintext) {
+multipassify.prototype.encrypt = function(plaintext, iv) {
     // Use a random IV
-    var iv = crypto.randomBytes(BLOCK_SIZE);
+    if(!iv) {
+        iv = crypto.randomBytes(BLOCK_SIZE);
+    }
     var cipher = crypto.createCipheriv('aes-128-cbc', this._encryptionKey,iv);
 
     // Use IV as first block of ciphertext
