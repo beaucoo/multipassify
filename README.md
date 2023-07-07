@@ -26,10 +26,7 @@ Make sure "Accounts are required" or "Accounts are optional" is selected and Mul
   var multipassify = new Multipassify("SHOPIFY MULTIPASS SECRET");
 
   // Create your customer data hash
-  var customerData = { email: 'test@example.com', remote_ip:'USERS IP ADDRESS', return_to:"http://some.url"};
-
-  // Encode a Multipass token
-  var token = multipassify.encode(customerData);
+  var customerData = { email: 'test@example.com', remote_ip:'USERS IP ADDRESS', return_to:"http://some.url"};;
 
   // Generate a Shopify multipass URL to your shop
   var url = multipassify.generateUrl(customerData, "yourstorename.myshopify.com");
